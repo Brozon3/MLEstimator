@@ -10,20 +10,27 @@
 {% endblock %}
 
 {% block H1_Description %}
-    <div class="container">
-        <div class="row row-cols-3" style="grid-gap: 20px;">
-            <h4 class="font-weight-bold mb-0">Person Age: <span class="text-muted font-weight-normal">{{ person_dict.age }}</span></h4>
-            <h4 class="font-weight-bold mb-0">Person BMI: <span class="text-muted font-weight-normal">{{ person_dict.bmi }}</span></h4>
-            <h4 class="font-weight-bold mb-0">Person Glucose <span class="text-muted font-weight-normal">{{ person_dict.glucose }}</span></h4>
-        </div>
-    </div>
+    <h1 class="font-weight-bold my-1 p-2">Person's Information</h1>
 {% endblock %}
 
 {% block H1_Content %}
+    <div class="container">
+        <h4 class="font-weight-bold my-1 p-2">Person Age: <span class="text-muted font-weight-normal">{{ person_dict.age }}</span></h4>
+        <h4 class="font-weight-bold my-1 p-2">Person BMI: <span class="text-muted font-weight-normal">{{ person_dict.bmi }}</span></h4>
+        <h4 class="font-weight-bold my-1 p-2">Person Glucose <span class="text-muted font-weight-normal">{{ person_dict.glucose }}</span></h4>
+    </div>
 {% endblock %}
 
 {% block H2_Description %}
+    <h1 class="font-weight-bold my-1 p-2">Person's Diabetic Estimate</h1>
 {% endblock %}
 
 {% block H2_Content %}
+    <div class="container">
+        {% if (diabetes_prediction == 1) %}
+            <h4 class="font-weight-bold my-1 p-2"> Diabetic: <span class="text-muted font-weight-normal">{{ "Yes" }} </span></h4>
+        {% else %}
+            <h4 class="font-weight-bold my-1 p-2"> Diabetic: <span class="text-muted font-weight-normal">{{ "No" }} </span></h4>
+        {% endif %}
+    </div>
 {% endblock %}

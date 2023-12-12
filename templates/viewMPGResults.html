@@ -10,23 +10,41 @@
 {% endblock %}
 
 {% block H1_Description %}
-    <div class="container">
-        <div class="row row-cols-3" style="grid-gap: 20px;">
-            <h4 class="font-weight-bold mb-0">Car Cylinders: <span class="text-muted font-weight-normal">{{ car_dict.cylinders }}</span></h4>
-            <h4 class="font-weight-bold mb-0">Car Horsepower: <span class="text-muted font-weight-normal">{{ car_dict.horsepower }}</span></h4>
-            <h4 class="font-weight-bold mb-0">Car Weight: <span class="text-muted font-weight-normal">{{ car_dict.weight }}</span></h4>
-            <h4 class="font-weight-bold mb-0">Car Age: <span class="text-muted font-weight-normal">{{ car_dict.age }}</span></h4>
-            <h4 class="font-weight-bold mb-0">Japan Origin: <span class="text-muted font-weight-normal">{{ car_dict.origin_japan }}</span></h4>
-            <h4 class="font-weight-bold mb-0">USA Origin: <span class="text-muted font-weight-normal">{{ car_dict.origin_usa }}</span></h4>
-        </div>
-    </div>
+    <h1 class="font-weight-bold my-1 p-2">Car's Information</h1>
 {% endblock %}
 
 {% block H1_Content %}
+    <div class="container">
+        <h4 class="font-weight-bold my-1 p-2">Car Cylinders:
+            <span class="text-muted font-weight-normal">{{ car_dict.cylinders }}</span>
+        </h4>
+        <h4 class="font-weight-bold my-1 p-2">Car Horsepower:
+            <span class="text-muted font-weight-normal">{{ car_dict.horsepower }}</span>
+        </h4>
+        <h4 class="font-weight-bold my-1 p-2">Car Weight:
+            <span class="text-muted font-weight-normal">{{ car_dict.weight }}</span>
+        </h4>
+        <h4 class="font-weight-bold my-1 p-2">Car Age:
+            <span class="text-muted font-weight-normal">{{ car_dict.age}}</span>
+        </h4>
+        <h4 class="font-weight-bold my-1 p-2">Car Origin:
+            {% if (car_dict.origin_japan == 1) %}
+                <span class="text-muted font-weight-normal">{{ "Japan" }}</span>
+            {% elif (car_dict.origin_usa == 2) %}
+                <span class="text-muted font-weight-normal">{{ "USA" }}</span>
+            {% else %}
+                <span class="text-muted font-weight-normal">{{ "Europe" }}</span>
+            {% endif %}
+        </h4>
+    </div>
 {% endblock %}
 
 {% block H2_Description %}
+    <h1 class="font-weight-bold my-1 p-2">Car's MPG Estimate</h1>
 {% endblock %}
 
 {% block H2_Content %}
+    <div class="container">
+        <h4 class="font-weight-bold my-1 p-2">MPG: <span class="text-muted font-weight-normal">{{ mpg_estimate }}</span></h4>
+    </div>
 {% endblock %}

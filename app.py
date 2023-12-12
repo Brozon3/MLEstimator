@@ -2,11 +2,14 @@ from flask import Flask, render_template
 from forms import PersonInformationForm, CarInformationForm
 from datetime import datetime
 import warnings
+from joblib import load
+import numpy as np
+
 
 warnings.filterwarnings("ignore")
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = "asdaqwawd68448awd6a8w4d6a84wd"
+app.config['SECRET_KEY'] = "as0972140jda0s975093n0as9d"
 pathName = "C:/Users/Pat/OneDrive/Documents/Desktop/insuranceEstimator/"
 
 
@@ -35,7 +38,12 @@ def get_car_information():
             car_dict = {"cylinders": car_cylinders, "horsepower": car_hp, "weight": car_weight,
                         "age": datetime.today().year - car_year, "origin_japan": 0, "origin_usa": 0}
 
-        return render_template("viewMPGResults.html", car_dict=car_dict)
+        input_array = np.array(list(car_dict.values())).reshape(1, -1)
+
+        mpg_model = load("mpg_model.joblib")
+        mpg_estimate = mpg_model.predict(input_array)
+
+        return render_template("viewMPGResults.html", car_dict=car_dict, mpg_estimate=round(mpg_estimate[0], 2))
 
     else:
         return render_template("carInfo.html", form=form)
@@ -52,7 +60,13 @@ def get_person_information():
 
         person_dict = {"age": person_age, "bmi": person_bmi, "glucose": person_glucose}
 
-        return render_template("viewDiabeticResults.html", person_dict=person_dict)
+        input_array = np.array(list(person_dict.values())).reshape(1, -1)
+
+        diabetes_estimator = load("diabetes_model.joblib")
+        diabetes_prediction = diabetes_estimator.predict(input_array)
+
+        return render_template("viewDiabeticResults.html", person_dict=person_dict,
+                               diabetes_prediction=diabetes_prediction)
 
     else:
         return render_template("personInfo.html", form=form)
