@@ -10,7 +10,7 @@ warnings.filterwarnings("ignore")
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = "as0972140jda0s975093n0as9d"
-pathName = "C:/Users/Pat/OneDrive/Documents/Desktop/insuranceEstimator/"
+pathName = "C:/Users/brozo/PycharmProjects/flaskProject1/"
 
 
 @app.route('/')
